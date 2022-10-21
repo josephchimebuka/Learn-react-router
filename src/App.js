@@ -7,6 +7,7 @@ import SharedLayout from './components/SharedLayout'
 import SingleProduct from './components/SingleProduct'
 import Login from './pages/Login'
 import Dashboard from './pages/Dashboard'
+import ProtectedRoute from './components/ProtectedRoute'
 import {useState} from 'react'
 
 
@@ -19,8 +20,11 @@ function App() {
       <Route  index element={<Home/>}/>
       <Route path='about' element={<About/>}/>
       <Route path='products' element={<Products/>}/>
-      <Route path='login' element={<Login user={user}/>}/>
-      <Route path='dashboard' element={<Dashboard setUser={setUser}/>}/>
+      <Route path='login' element={<Login setUser={setUser}/>}/>
+    
+     <Route path='dashboard' element={ <ProtectedRoute user={user}>
+     <Dashboard user={user}/>
+     </ProtectedRoute>}/>
       <Route path='products/:productId' element={<SingleProduct />}/>
       </Route>
       <Route path='*' element={<Error/>}/> 
